@@ -1,7 +1,7 @@
 
 ## About this app
 
-This is a simple React app that simulates a shopping list for three stores. Users can add items to their shopping lists. This app is meant to demonstrate components, nested components, using state with forms, and using state to map data as HTML elements.
+This is a simple React app that simulates a shopping list for three stores. Users can add items to their shopping lists. This app is meant to demonstrate components, nested components, passing props to components, component state, using state with forms, and using state to map data as HTML elements.
 
 In the project directory, you can run:
 
