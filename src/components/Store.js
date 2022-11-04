@@ -21,16 +21,21 @@ export default class Store extends React.Component {
     // we have to call preventDefault()
     handleSubmit(event) {
         event.preventDefault()
-        this.setState({items: [...this.state.items, this.state.inputValue]}) // New syntax for adding on to the end of an array
+        const { v4: uuidv4 } = require('uuid');
+        var Id = uuidv4();
+        //this.setState({items: [...this.state.items, Id]});
+        this.setState({items: [...this.state.items, { id: Id, value: this.state.inputValue }]}) // New syntax for adding on to the end of an array
+
         document.getElementById(this.props.storeName).value = ""; // Reset the form's input field to be blank
     }
     
     render() {
+        console.log(this.state.items)
       return (
         <div className="store">
             <h2>{this.props.storeName}</h2>
             <ul>
-                {this.state.items.map(item => <li>{item}</li>)} {/* Display a list item for each item in our state */ }
+                {this.state.items.map(item => <li key={item.id}>{item.value}</li>)} {/* Display a list item for each item in our state */ }
             </ul>
             <form onSubmit={this.handleSubmit}>
                 <label>
