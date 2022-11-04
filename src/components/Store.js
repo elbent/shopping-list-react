@@ -21,9 +21,8 @@ export default class Store extends React.Component {
     // we have to call preventDefault()
     handleSubmit(event) {
         event.preventDefault()
-        console.log(this.state.inputValue);
         this.setState({items: [...this.state.items, this.state.inputValue]}) // New syntax for adding on to the end of an array
-        document.getElementById("item").value = ""; // Reset the form's input field to be blank
+        document.getElementById(this.props.storeName).value = ""; // Reset the form's input field to be blank
     }
     
     render() {
@@ -36,7 +35,7 @@ export default class Store extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                     What do you need?
-                    <input id="item" type="text"  onChange={this.handleChange}/>
+                    <input id={this.props.storeName} type="text"  onChange={this.handleChange}/>
                 </label>
                 <input type="submit" value="Add to List"/>
             </form>
