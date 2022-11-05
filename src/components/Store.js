@@ -14,6 +14,7 @@ export default class Store extends React.Component {
     // We have to store the input value of the form as part of the state so it persists
     // We do that with a handler for when the input text changes
     handleChange(event) {
+        if (event.target.inputValue === "") return;
         this.setState({inputValue : event.target.value}) 
     }
     
@@ -21,12 +22,15 @@ export default class Store extends React.Component {
     // we have to call preventDefault()
     handleSubmit(event) {
         event.preventDefault()
+        if (this.state.inputValue  === "") return;
+
         const { v4: uuidv4 } = require('uuid');
         var Id = uuidv4();
-        //this.setState({items: [...this.state.items, Id]});
+
         this.setState({items: [...this.state.items, { id: Id, value: this.state.inputValue }]}) // New syntax for adding on to the end of an array
 
         document.getElementById(this.props.storeName).value = ""; // Reset the form's input field to be blank
+        this.setState({inputValue : ""});
     }
     
     render() {
