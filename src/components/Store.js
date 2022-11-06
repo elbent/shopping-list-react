@@ -14,15 +14,25 @@ export default class Store extends React.Component {
     // We have to store the input value of the form as part of the state so it persists
     // We do that with a handler for when the input text changes
     handleChange(event) {
-        if (event.target.inputValue === "") return;
-        this.setState({inputValue : event.target.value}) 
-    }
-    
+        if (event.target.value.trim() === "") {
+          document.getElementById(this.props.storeName).value = "";
+          this.setState({ inputValue: "" });
+          return;
+        }
+        else {
+          this.setState({ inputValue: event.target.value.trim() });
+        }
+      }
+
     // Default behavior for submitting a form is posting and redirecting to a new page, so
     // we have to call preventDefault()
     handleSubmit(event) {
         event.preventDefault()
-        if (this.state.inputValue  === "") return;
+        if (this.state.inputValue === "") {
+            document.getElementById(this.props.storeName).value = "";
+            this.setState({ inputValue: "" });
+            return;
+          }
 
         const { v4: uuidv4 } = require('uuid');
         var Id = uuidv4();
@@ -34,7 +44,6 @@ export default class Store extends React.Component {
     }
     
     render() {
-        console.log(this.state.items)
       return (
         <div className="store">
             <h2>{this.props.storeName}</h2>
